@@ -19,5 +19,5 @@ You can use slash commands to do any of the loadouts. News is not functional and
 # Requests
 If there is a feature you would like added or find a bug please add an issue and it will be updated.
 
-# Why not just give an exeicutable jar file?
+# Why not just give an executable jar file?
 There are bots that snipe API keys, and can do with them as they please. If you know of a safe way for me to give an .jar file without this risk please let me know. I prefer things be easier for people!
