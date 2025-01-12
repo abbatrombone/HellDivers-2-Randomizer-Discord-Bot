@@ -14,7 +14,7 @@ To invite your own bot you need https://discordapp.com/oauth2/authorize?&client_
 The ClinentID will be found in the delvepors page dont forget to remove the brackets "[]" in the part of the url with the clientID.
 
 # Commands
-You can use slash commands to do any of the loadouts. News is not functional and shouldnt be seen it is still being worked on 
+You can use slash commands to do any of the loadouts.
 
 # Requests
 If there is a feature you would like added or find a bug please add an issue and it will be updated.
