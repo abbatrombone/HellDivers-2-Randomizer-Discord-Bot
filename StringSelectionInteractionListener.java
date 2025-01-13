@@ -4,9 +4,8 @@ import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionE
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.selections.SelectOption;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StringSelectionInteractionListener extends ListenerAdapter {
 
@@ -17,6 +16,11 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
        List<SelectOption> selectionArray = event.getInteraction().getSelectedOptions();
        int arraysize = selectionArray.size(); //casuse arrays start at 0
        ArrayList<String> warbondList = new ArrayList<>();
+
+        for (int i = 0; i < arraysize; i++) {
+            warbondList.add(event.getInteraction().getValues().get(i));
+        }
+
         String enemyType = enemyType();
         String difficulty = diff();
         String primaryWeapon = primaryWeapon(warbondList);
@@ -25,17 +29,13 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
         String armorLevel = armorLevel();
         String armorPassive = armorPassive(warbondList,armorLevel);
 
-        for (int i = 0; i < arraysize; i++) {
-            warbondList.add(event.getInteraction().getValues().get(i));
-        }
-
         event.reply("You Selected the following warbonds Helldiver: "+ warbondList.toString().replace("[","").replace("]","")
                 + "Hello Helldiver, General Brash has demanded that you use the following on your next `" + operation(enemyType) + "` operation against the `" + enemyType + "`\n" +
                 "Difficulty: `" + difficulty  + "`\n" +
                 "Your weapon is: `" + primaryWeapon  + "`\n" +
                 "Your secondary is: `" + secondaryWeapon + "`\n" +
                 "Your throwable is: `" + throwable + "`\n" +
-                "Armor: `" + armorLevel + "` armor with the `" + armorPassive + "` Passive. Should you not have an armor passive like that use this one: `" + "`\n" +
+                "Armor: `" + armorLevel + "` armor with the `" + armorPassive + "` Passive.\n" +
                 "Your stratagems will be the following:\n" + stratagems(warbondList) + "\n" +
                 "Your Booster is: \n`" + hellpodOpt(warbondList) +"`\n" +
                 randomPhrase()).setEphemeral(true).queue();
@@ -194,13 +194,11 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
         return armorLevel;
     }
     public static String armorPassive(ArrayList<String> warbondList,String armorLevel){
-        String passive = "";
         ArrayList<String> armorPassiveList = new ArrayList<>();
+        ArrayList<String> passivesWithOutDups = new ArrayList<>();
         Random armorpassran = new Random();
-        int armorPassiveInt = armorpassran.nextInt(13 -1 + 1) +1;
 
         if(armorLevel.equals("Light")){
-
            if(warbondList.contains("Chemical Agents")){armorPassiveList.add("Advanced Filtration");}
            if(warbondList.contains("Cutting Edge")){armorPassiveList.add("Electrical Conduit");}
            if(warbondList.contains("Democratic Detonation")){armorPassiveList.add("Engineering Kit");}
@@ -242,12 +240,12 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
             }
             if(warbondList.contains("Super Store")){
                 armorPassiveList.add("Acclimated");
-                 armorPassiveList.add("Engineering Kit");
-                 armorPassiveList.add("Fortified");
-                 armorPassiveList.add("Med-Kit");
-                 armorPassiveList.add("Extra Padding");
-                 armorPassiveList.add("Peak Physique");
-                 armorPassiveList.add("Advanced Filtration");
+                armorPassiveList.add("Engineering Kit");
+                armorPassiveList.add("Fortified");
+                armorPassiveList.add("Med-Kit");
+                armorPassiveList.add("Extra Padding");
+                armorPassiveList.add("Peak Physique");
+                armorPassiveList.add("Advanced Filtration");
             }
             if(warbondList.contains("Steeled Veterans")){ armorPassiveList.add("Servo-Assisted");}
             if(warbondList.contains("Truth Enforcers")){armorPassiveList.add("Unflinching");}
@@ -255,7 +253,6 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
             if(warbondList.contains("Viper Commandos")){}
 
         } else if (armorLevel.equals("Heavy")) {
-
 
             if(warbondList.contains("Democratic Detonation")){armorPassiveList.add("Fortified");}
             if(warbondList.contains("Helldivers Mobilize")){armorPassiveList.add("Fortified");}
@@ -280,11 +277,14 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
             if(warbondList.contains("Urban Legends")){}
             if(warbondList.contains("Viper Commandos")){}
 
-
         }
 
+        passivesWithOutDups = (ArrayList<String>) armorPassiveList.stream().distinct().collect(Collectors.toList());
+        int armorPassiveInt = armorpassran.nextInt(armorPassiveList.size());;
+        System.out.println(armorPassiveInt);
+        System.out.println(passivesWithOutDups);
 
-        return passive;
+        return passivesWithOutDups.get(armorPassiveInt);
     }
     public static String stratagems(ArrayList<String> warbondList){
         List<String> stratagems = new ArrayList<>();
