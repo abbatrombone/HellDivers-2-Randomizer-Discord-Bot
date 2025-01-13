@@ -280,7 +280,7 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
         }
 
         passivesWithOutDups = (ArrayList<String>) armorPassiveList.stream().distinct().collect(Collectors.toList());
-        int armorPassiveInt = armorpassran.nextInt(armorPassiveList.size());;
+        int armorPassiveInt = armorpassran.nextInt(passivesWithOutDups.size());;
         System.out.println(armorPassiveInt);
         System.out.println(passivesWithOutDups);
 
