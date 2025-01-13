@@ -43,7 +43,3 @@ public class Main {
                 .build();
     }
 }
-
-//https://discordapp.com/oauth2/authorize?&client_id=1325577071698903111&permissions=277025458240&scope=bot
-//To add bot replace [CLIENTID] with client Id in the server with what the discord devlopers page
-//https://discordapp.com/oauth2/authorize?&client_id=[CLIENTID]&permissions=277025458240&scope=bot
