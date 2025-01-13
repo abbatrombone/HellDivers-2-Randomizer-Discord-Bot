@@ -2,6 +2,7 @@ package Commands;
 
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import org.jetbrains.annotations.NotNull;
@@ -28,9 +29,11 @@ public class Listeners extends ListenerAdapter{
                 Commands.slash("dmme","sends you a message"),
                 Commands.slash("randomloadout","Gives Random Load Out"),
                 Commands.slash("semirandomloadout","Gives more fair loadout"),
-                Commands.slash("new","test"),
+                Commands.slash("plant","test")
+                        .addOption(OptionType.STRING,"planet","Please enter name of planet Helldiver",true,false),
                 Commands.slash("solorules","Rules for randomizer as a solo player"),
-                Commands.slash("grouprules","Rules for randomizer as a group")
+                Commands.slash("grouprules","Rules for randomizer as a group"),
+                Commands.slash("warbond","test")
         ).queue();
     }
 
