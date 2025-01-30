@@ -273,8 +273,8 @@ public class StringSelectionInteractionListener extends ListenerAdapter {
                 armorPassiveList.add("Servo-Assisted");
             }
             if(warbondList.contains("Steeled Veterans")){ armorPassiveList.add("Servo-Assisted");}
-            if(warbondList.contains("Truth Enforcers")){armorPassiveList.add("Unflinching");}
-            if(warbondList.contains("Urban Legends")){}
+            if(warbondList.contains("Truth Enforcers")){}
+            if(warbondList.contains("Urban Legends")){armorPassiveList.add("Siege-Ready");}
             if(warbondList.contains("Viper Commandos")){}
 
         }
